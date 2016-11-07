@@ -7,6 +7,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     var poresid=appConfig.meetingroom.poresid;
     var mid;
     var y,m,d;
+    
     var reservemr = function() {
     this.keyTextValue=ko.observable("");
     var self=this;
@@ -45,6 +46,11 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         // }, 500);
            
     }
+    function closeMinipopup()
+    {
+         $(".mini-shadow").remove();
+         $(".mini-popup").remove();
+    }
     reservemr.prototype.attached=function(){
         mini.parse();
         // $('#gridPanel:contains("mini-panel-")').hide();
@@ -60,7 +66,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         // }
         
         grid.set({url:urllist, ajaxOptions:{dataType:"jsonp",jsonp:"jsoncallback"}});
-        grid.load({key:""},loadSuccess,null);
+       // grid.load({key:""},loadSuccess,null);
         function loadSuccess(e)
         {
             //console.log(e);
@@ -72,13 +78,14 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         
     };
     reservemr.prototype.ok = function() {
-        $('#ok').attr({"disabled":"disabled"});
+       
         var that=this;
         mini.parse();
         var form = new mini.Form("form");
         var o =  new mini.Form("form").getData();
         form.validate(); 
         if (form.isValid() == false) return;
+         $('#ok').attr({"disabled":"disabled"});
         o._id=1;
         o._state="added";
         o.mid=mid;
@@ -86,8 +93,10 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         dbs.dbSavedata(subresid,0,json,dataSaved,fnerror,fnhttperror);
         function dataSaved(text){
             dialog.showMessage('<h1>申请成功</h1>','会议室申请',['返回'],true);
-            parent.location.reload();
+           // parent.location.reload();
+            closeMinipopup();
             dialog.close(that);
+           
           
         }
         function fnerror(text){
@@ -102,7 +111,8 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     };
     reservemr.prototype.cancel = function() {
         mini.parse()
-        parent.location.reload();
+       // parent.location.reload();
+        closeMinipopup();
         dialog.close(this);
     };
     reservemr.show = function(mdata,yyyy,mm,dd){
@@ -110,7 +120,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         y=yyyy;
         m=mm;
         d=dd;
-        return dialog.show(new reservemr());
+        return dialog.show(new reservemr() );
         
     };
     return reservemr;

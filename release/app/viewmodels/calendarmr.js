@@ -79,8 +79,8 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr'], fun
     };
     carendarmr.prototype.ok = function() {
         reservemr.show(mid,yyyy,mm,dd);
-        var that=this;
-        dialog.close(that);
+        //var that=this;
+        //dialog.close(that);
     };
     carendarmr.prototype.attached=function(){
        
