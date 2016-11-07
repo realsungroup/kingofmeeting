@@ -8,10 +8,24 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     var mid;
     var y,m,d;
     var reservemr = function() {
-        
-    };
+    this.keyTextValue=ko.observable("");
+    var self=this;
+    this.filtertext=ko.computed(function () { 
+         if (self.keyTextValue()!=="" && self.keyTextValue()!==undefined){   
+               
+                var grid = mini.get("datagrid1");
+                setTimeout(function() {
+                     grid.load({
+                     key: self.keyTextValue()
+                });
+                }, 500);
+               
+                //  console.log('keyTextValue');
+                 return self.keyTextValue();
+           }
+         });
    
-        
+    };
     reservemr.prototype.compositionComplete=function (view)
     {
             mini.parse();
@@ -20,15 +34,15 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     }
     function bindButtonFunction(view,that)
     {
-        setTimeout(function() {
-            $("#search").click(function(){
-                var keyText = mini.get("keyText");
-                var grid = mini.get("datagrid1");
-                grid.load({
-                    key: keyText.value
-                });
-           });
-        }, 500);
+        // setTimeout(function() {
+        //     $("#search").click(function(){
+        //         var keyText = mini.get("keyText");
+        //         var grid = mini.get("datagrid1");
+        //         grid.load({
+        //             key: keyText.value
+        //         });
+        //    });
+        // }, 500);
            
     }
     reservemr.prototype.attached=function(){
@@ -41,9 +55,9 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         
         var grid = mini.get("datagrid1");
        
-        function fnSuccess(mdata){
-            grid.set({data:mdata});
-        }
+        // function fnSuccess(mdata){
+        //     grid.set({data:mdata});
+        // }
         
         grid.set({url:urllist, ajaxOptions:{dataType:"jsonp",jsonp:"jsoncallback"}});
         grid.load({key:""},loadSuccess,null);
@@ -51,7 +65,6 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         {
             //console.log(e);
         }
-        
         var start='<input name="start" format="yyyy-MM-dd H:mm" value="'+y+'-'+m+'-'+d+' 9:00" style="width:250px" class="mini-datepicker" showOkButton="true" showTime="true" required="true"/>'
         $('#start').append(start);
         var endtime='<input name="endtime" format="yyyy-MM-dd H:mm" value="'+y+'-'+m+'-'+d+' 10:00" style="width:250px" class="mini-datepicker" showOkButton="true" showTime="true" required="true"/>'
