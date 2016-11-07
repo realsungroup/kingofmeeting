@@ -30,22 +30,9 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     reservemr.prototype.compositionComplete=function (view)
     {
             mini.parse();
-            var that=this;
-            bindButtonFunction(view,that);
+          
     }
-    function bindButtonFunction(view,that)
-    {
-        // setTimeout(function() {
-        //     $("#search").click(function(){
-        //         var keyText = mini.get("keyText");
-        //         var grid = mini.get("datagrid1");
-        //         grid.load({
-        //             key: keyText.value
-        //         });
-        //    });
-        // }, 500);
-           
-    }
+    
     function closeMinipopup()
     {
          $(".mini-shadow").remove();
@@ -53,18 +40,11 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     }
     reservemr.prototype.attached=function(){
         mini.parse();
-        // $('#gridPanel:contains("mini-panel-")').hide();
-        //$('#gridPanel').empty();
-        //$('.mini-panel-viewport').attr('display','none');
-        
+
         var urllist=appConfig.app.baseUrl + "&method=" + appConfig.app.getMethod + "&user=" + appConfig.app.user + "&ucode=" + appConfig.app.ucode + "&subresid=0&resid=" + poresid + "&cmswhere=";
         
         var grid = mini.get("datagrid1");
        
-        // function fnSuccess(mdata){
-        //     grid.set({data:mdata});
-        // }
-        
         grid.set({url:urllist, ajaxOptions:{dataType:"jsonp",jsonp:"jsoncallback"}});
        // grid.load({key:""},loadSuccess,null);
         function loadSuccess(e)

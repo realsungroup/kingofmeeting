@@ -16,33 +16,10 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr'], fun
             var yyyy;
             var mm;
             var dd;
+            var mn;
             var mid;
             var eventJson;
-    var carendarmr = function() {
-        jQuery(document).ready(function() { //日历控件
-            var date = new Date();
-		        dd = date.getDate();
-		        mm = date.getMonth()+1;
-		        yyyy = date.getFullYear();
-            
-            var reserve=function(){
-                mn=mm+1;
-                cmswhere="mid='"+mid+"' AND month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"'";
-                // dbs.dbGetdata(subresid,0,cmswhere,fnSuccess,null,null)
-                var f3svc_sql='select  mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where '+cmswhere;
-                dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null)
-                console.log(f3svc_sql);
-                function fnSuccess(Json){
-                    // for(var i = 0; i < Json.length; i++){
-                    //     Json[i].end=(Json[i]).endtime;
-                    // }
-                    eventJson=Json;
-                };
-                return eventJson;
-            };
-            reserve();
-            setTimeout(function() {
-                var calendar = jQuery('#calendar').fullCalendar({
+            var objCalendar={
                     header: {
                         left: 'prev,next today',
                         center: 'title',
@@ -69,8 +46,31 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr'], fun
                         $('#calendar').fullCalendar( 'gotoDate', yyyy,mm-1,dd );
                         $('#calendar').fullCalendar('changeView','agendaDay');
                     },
-                    events:eventJson
-                });
+                    events:null
+                };
+    var carendarmr = function() {
+        jQuery(document).ready(function() { //日历控件
+            var date = new Date();
+		        dd = date.getDate();
+		        mm = date.getMonth()+1;
+		        yyyy = date.getFullYear();
+            
+            
+                mn=mm+1;
+                cmswhere="mid='"+mid+"' AND month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"'";
+                // dbs.dbGetdata(subresid,0,cmswhere,fnSuccess,null,null)
+                var f3svc_sql='select  mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where '+cmswhere;
+                dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null)
+                console.log(f3svc_sql);
+                function fnSuccess(Json){
+                   
+                    objCalendar.events=Json;
+                   
+                };
+                
+            
+            setTimeout(function() {
+                var calendar = jQuery('#calendar').fullCalendar(objCalendar);
             }, 350);
         });
     }
@@ -78,7 +78,23 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr'], fun
         dialog.close(this);              
     };
     carendarmr.prototype.ok = function() {
-        reservemr.show(mid,yyyy,mm,dd);
+        reservemr.show(mid,yyyy,mm,dd).then(function(r){
+           
+                cmswhere="mid='"+mid+"' AND month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"'";
+                var f3svc_sql='select  mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where '+cmswhere;
+                dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null)
+                console.log(f3svc_sql);
+                function fnSuccess(Json){
+                   
+                    objCalendar.events=Json;
+                     $('#calendar').fullCalendar("destroy");
+                     $('#calendar').fullCalendar(objCalendar);
+                   
+                };
+           
+
+
+        });
         //var that=this;
         //dialog.close(that);
     };
