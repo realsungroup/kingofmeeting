@@ -1,0 +1,62 @@
+<div id="example">
+	<h3 data-bind="click : cityfilterofsh">上海</h3>
+	<div>
+		<div class="building lf">
+			<input class="active" type="button" value="A座" data-bind="click : buildingfilterA"/>
+			<input type="button" value="B座" data-bind="click : buildingfilterB"/>
+			<input type="button" value="C座" data-bind="click : buildingfilterC"/>
+			<input type="button" value="D座" data-bind="click : buildingfilterD"/>
+			<input type="button" value="E座" data-bind="click : buildingfilterE"/>
+		</div>
+		<div class="floorgulp">
+			<input type="hidden" data-bind="click : refresh" id="refreshmr">
+			<input type="button" value="6F" data-bind="click : floorfilter6F"/><br>
+			<input type="button" value="5F" data-bind="click : floorfilter5F"/><br>
+			<input type="button" value="4F" data-bind="click : floorfilter4F"/><br>
+			<input type="button" value="3F" data-bind="click : floorfilter3F"/><br>
+			<input type="button" value="2F" data-bind="click : floorfilter2F"/><br>
+			<input class="active" type="button" value="1F" data-bind="click : floorfilter1F"/>
+		</div>
+		<div class="meeting" data-bind="foreach: mlist">
+                <button data-bind="click : edit.bind(mid)" >
+					<span data-bind="text: city"></span>
+					<span data-bind="text: fname"></span><br>
+					<span data-bind="text: floor"></span><br>
+					<span data-bind="text: mname"></span>
+			    </button>
+		</div>
+	</div>
+	<h3 data-bind="click : cityfilterofwx">无锡</h3>
+	<div>
+		<div class="building lf">
+			<input class="active" type="button" value="A座" data-bind="click : buildingfilterA"/>
+			<input type="button" value="B座" data-bind="click : buildingfilterB"/>
+			<input type="button" value="C座" data-bind="click : buildingfilterC"/>
+			<input type="button" value="D座" data-bind="click : buildingfilterD"/>
+			<input type="button" value="E座" data-bind="click : buildingfilterE"/>
+		</div>
+		<div class="floorgulp">
+			<input type="button" value="6F" data-bind="click : floorfilter6F"/><br>
+			<input type="button" value="5F" data-bind="click : floorfilter5F"/><br>
+			<input type="button" value="4F" data-bind="click : floorfilter4F"/><br>
+			<input type="button" value="3F" data-bind="click : floorfilter3F"/><br>
+			<input type="button" value="2F" data-bind="click : floorfilter2F"/><br>
+			<input class="active" type="button" value="1F" data-bind="click : floorfilter1F"/>
+		</div>
+		<div class="meeting" data-bind="foreach: mlist" >
+			<button data-bind="click : edit.bind(mid)">
+				<span data-bind="text: city"></span><span data-bind="text: fname"></span><br><span data-bind="text: floor"></span><br><span data-bind="text: mname"></span>
+			</button>
+		</div>
+	</div>
+	<h3>说明</h3>
+	<div>
+		<div class="content">
+			<p>This example simply sets a class attribute to the details and let's an external stylesheet toggle the collapsed state.
+				<br>
+				Hello Sir.
+				<br>	
+				I'm sliding</p>
+		</div>
+	</div>
+</div>

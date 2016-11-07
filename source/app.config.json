@@ -1,0 +1,44 @@
+{
+    "app": {
+        "loginUrl": "",
+        "baseUrl": "http://www.realsun.me:8003/rispweb/risphost/data/AjaxService.aspx?uiver=200&dynlogin=1",
+        "localbaseUrl": "",
+        "user":"demo1",
+        "ucode":"bTqoF2CcMCj7uIOBllZtDw==",
+        "getMethod": "ShowHostTableDatas_Ajax",
+        "uploadFileUrl":"http://www.realsun.me:8003/rispweb/rispservice/SvcUploadFile2.aspx",
+        "uppath":"?savepath=e:\\web\\rispweb\\upfiles&httppath=",
+        "httppath":"http://www.realsun.me:8003/rispweb//upfiles",
+        "saveMethod":"SaveData_Ajax",
+        "debug":true,
+        "dbs":null,
+        "upass":"",
+        "winno":0,
+        "winname":"",
+        "canteenno":0,
+        "canteenname":""
+    },
+    "kingofdinner":
+    {
+        "dinnerno":0,
+        "dinnername":"",
+        "starttime":null,
+        "endtime":null,
+        "isopen":"",
+        "operator":"",
+        "updatetime":null
+    },
+     "dinnerlist":
+    {        
+        "resid":529019544123,
+        "subresid":512140171786
+    },
+    "appfunction":null,
+    "meetingroom":{
+        "resid":530878878265,
+        "subresid":531240746615,
+        "poresid":227186227531
+    }
+
+}
+

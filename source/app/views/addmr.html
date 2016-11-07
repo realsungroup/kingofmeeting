@@ -1,0 +1,106 @@
+<form class="mta" id="form">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>新增会议室</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>所在城市:</td>
+            <td>
+                <select class="mini-combobox" name="city">
+                    <option value="上海">上海</option>
+                    <option value="无锡">无锡</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>所在幢:</td>
+            <td>
+                <select class="mini-combobox" name="fname">
+                    <option value="A座">Ａ座</option>
+                    <option value="B座">Ｂ座</option>
+                    <option value="C座">Ｃ座</option>
+                    <option value="D座">Ｄ座</option>
+                    <option value="E座">Ｅ座</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>所在楼层:</td>
+            <td>
+                <select class="mini-combobox" name="floor">
+                    <option value="1F">1F</option>
+                    <option value="2F">2F</option>
+                    <option value="3F">3F</option>
+                    <option value="4F">4F</option>
+                    <option value="5F">5F</option>
+                    <option value="6F">6F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>最大参会人数:</td>
+            <td>
+                <select class="mini-combobox" name="mpnum">
+                    <option value="10人以内">10人以内</option>
+                    <option value="10至20人">10至20人</option>
+                    <option value="20至50人">20至50人</option>
+                    <option value="50人以上">50人以上</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>会议室名称:</td>
+            <td>
+                <input class="mini-textbox" name="mname" required="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td>电话号码:</td>
+            <td>
+                <input class="mini-textbox" name="tel" required="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td>设备(多选):</td>
+            <td>
+                <input name="teleq" class="mini-checkbox" text="电话会议设备" trueValue="Y" falseValue="N"/><br>
+                <input name="soundeq" class="mini-checkbox" text="扩音设备" trueValue="Y" falseValue="N"/><br>
+                <input name="projector" class="mini-checkbox" text="投影仪" trueValue="Y" falseValue="N"/><br>
+                <input name="wboard" class="mini-checkbox" text="白板" trueValue="Y" falseValue="N"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                会议室图片:
+            </td>
+            <td>
+                <input required="false"
+                    cursor="pointer"
+                    id='fileupload1'
+                    onuploaderror='onUploadError'
+                    onfileselect='onFileSelect'
+                    onuploadsuccess='onUploadSuccess'
+                    uploadUrl='upload.aspx'
+                    flashUrl='swfupload/swfupload.swf'
+                    class='mini-fileupload'
+                    uploadOnSelect=true 
+                    name='Fdata'
+                    limitType='*.jpg;*.jpeg;*.png'
+                    style='width:50%;'/>
+                <input id="imgurl" name='mrimage' class="mini-hidden"  allowInput="false"/>
+                <img align='right' id='imgUploaded' width="70px"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <br>
+                <input class="mini-button" iconCls="icon-save" onclick="saveClick" text="确认添加" >
+            </td>
+        </tr>
+    </table>
+</form>
