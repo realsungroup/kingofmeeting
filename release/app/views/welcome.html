@@ -1,0 +1,78 @@
+ 
+<section class="login-page">
+    <div class="container">
+    <main id="content" class="widget-login-container" role="main">
+        <div class="row">
+            <div class="col-xl-4 col-md-6 col-xs-10 col-xl-offset-4 col-md-offset-3 col-xs-offset-1">
+                <h5 class="widget-login-logo animated fadeInUp">
+                    <i class="fa fa-circle text-gray"></i>
+                    新同事 1.16
+                    <i class="fa fa-circle text-warning"></i>
+                </h5>
+                <section class="widget widget-login animated fadeInUp">
+                    <header>
+                        <h2>登入应用</h3>
+                    </header>
+                    <div class="widget-body">
+                        
+                        <p class="widget-login-info">
+                           没有账户，可以新建账户。
+                        </p>
+                        <form class="login-form mt-lg">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="用户名" data-bind="value: user, valueUpdate: 'afterkeydown'">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="pswd" type="password" placeholder="密码" data-bind="value: upass, valueUpdate: 'afterkeydown'">
+                            </div>
+                            <div class="clearfix">
+                                <div class="btn-toolbar pull-xs-right">
+                                    <button type="button" class="btn btn-secondary btn-sm">新建账户</button>
+                                    <button class="btn btn-inverse btn-sm" data-bind="click: dologin,enable:canLogin()">登入</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-md-push-6">
+                                    <div class="clearfix">
+                                        <div class="abc-checkbox widget-login-info pull-xs-right ml-n-lg">
+                                            <input type="checkbox" id="checkbox1" value="1" data-bind="checked:keeplogininfo">
+                                            <label for="checkbox1">保持登入状态</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-md-pull-6">
+                                    <a class="mr-n-lg" href="#">忘记登入密码?</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer class="page-footer">
+        2014 &copy; Realsun. KingofWebpos.
+    </footer>
+</div>
+<!-- The Loader. Is shown when pjax happens -->
+<div class="loader-wrap hiding hide">
+    <i class="fa fa-circle-o-notch fa-spin-fast"></i>
+</div>
+</section>
+<!-- common app js -->
+<script src="js/settings.js"></script>
+<script src="js/app.js"></script>
+<!-- common libraries. required for every page-->
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="vendor/jquery-pjax/jquery.pjax.js"></script>
+<script src="vendor/tether/dist/js/tether.js"></script>
+<script src="vendor/bootstrap/js/dist/util.js"></script>
+<script src="vendor/bootstrap/js/dist/collapse.js"></script>
+<script src="vendor/bootstrap/js/dist/dropdown.js"></script>
+<script src="vendor/bootstrap/js/dist/button.js"></script>
+<script src="vendor/bootstrap/js/dist/tooltip.js"></script>
+<script src="vendor/bootstrap/js/dist/alert.js"></script>
+<script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="vendor/widgster/widgster.js"></script>
+
