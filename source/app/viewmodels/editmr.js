@@ -12,7 +12,6 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         
         var that=this;
         if(confirm('您确定要删除么？')){
-            $('#del').attr({"disabled":"disabled"});
             mini.parse();
             var form = new mini.Form("editform");
             var o =  new mini.Form("editform").getData();
@@ -56,7 +55,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
             var json = mini.encode([o]);
             dbs.dbSavedata(resid,0,json,dataSaved,fnerror,fnhttperror);
             function dataSaved(text){
-                dialog.showMessage('<h1>修改成功</h1>','会议室新增',['返回'],true);
+                dialog.showMessage('<h1>修改成功</h1>','会议室编辑',['返回'],true);
                 $('#refreshmr').click()
                 dialog.close(that);
             }

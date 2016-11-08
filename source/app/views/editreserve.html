@@ -1,4 +1,4 @@
-<form id="form" class="reserve">			
+<form id="editform" class="reserve">			
     <table>
         <tr>
             <td>使用部门:</td>
@@ -16,19 +16,19 @@
         <tr>
             <td>会议开始时间:</td>
             <td colspan="3" id="start">
-                
+                <input name="start" format="yyyy-MM-dd H:mm" style="width:250px" class="mini-datepicker" showOkButton="true" showTime="true" required="true"/>
             </td>
         </tr>
         <tr>
             <td>会议结束时间:</td>
             <td colspan="3" id="endtime">
-               
+               <input name="endtime" format="yyyy-MM-dd H:mm" style="width:250px" class="mini-datepicker" showOkButton="true" showTime="true" required="true"/>
             </td>
         </tr>
         <tr>
             <td>参会人员:</td>
-            <td colspan="4">
-              <input id="lookup"
+            <td colspan="4" id="poup">
+              <!--<input id="lookup"
                       name="C3_531241226642"
                       class="mini-lookup"
                       style="width:450px"
@@ -36,7 +36,7 @@
                       grid="#datagrid1"
                       multiSelect="true"
                       textField="C3_384367557332"
-                      valueField="C3_384367557332" />
+                      valueField="C3_384367557332"/>-->
               <div id="gridPanel" class="mini-panel" title="header" iconCls="icon-add" style="width:450px;height:250px;" showToolbar="true" showCloseButton="true" showHeader="false" bodyStyle="padding:0" borderStyle="border:0">
                   <div property="toolbar" style="padding:5px;padding-left:8px;text-align:center;">  
                       <div style="float:left;padding-bottom:2px;">            
@@ -75,10 +75,11 @@
         </tr>
         <tr class="mtaf tc">
             <td colspan="4">
-                <input type="button" value="取消申请" class="btn btn-primary rf" data-bind="click : cancel">
-                <input type="button" id="ok" value="确认申请" class="btn btn-primary rf" data-bind="click : ok">
+                <input name="REC_ID" class="mini-Hidden" allowInput="false"/>
+                <input type="button" value="取消修改" class="btn btn-primary rf" data-bind="click : cancel">
+                <input type="button" id="ok" value="确认修改" class="btn btn-primary rf" data-bind="click : ok">
+                <input type="button" value="删除预定" class="btn btn-danger rf" data-bind="click : del">
             </td>
         </tr>
     </table>
 </form>
-		

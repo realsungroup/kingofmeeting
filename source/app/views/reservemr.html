@@ -1,14 +1,16 @@
 <form id="form" class="reserve">			
-    <table width="600">
+    <table>
         <tr>
             <td>使用部门:</td>
             <td>
                 <input class="mini-hidden" name="mid"/>
                 <input class="mini-textbox" name="title" required="true"/>
             </td>
-            <td>召集人:</td>
             <td>
-                <input class="mini-textbox" name="C3_531241057192" required="true"/>
+                <!--召集人:-->
+            </td>
+            <td>
+                <!--<input class="mini-textbox" name="C3_531241057192" required="true"/>-->
             </td>
         </tr>
         <tr>
@@ -39,12 +41,11 @@
                   <div property="toolbar" style="padding:5px;padding-left:8px;text-align:center;">  
                       <div style="float:left;padding-bottom:2px;">            
                           <input id="keyText"  style="width:160px;" data-bind="textInput:keyTextValue"/>
-                          
                           <!--<a  id="search" class="mini-button mini-button-success">查询</a>-->
-                          <a class="mini-button mini-button-warning" onclick="onClearClick" id="clearall" name="clearall">清空所有</a>
+                          <a class="mini-button mini-button-danger" onclick="onClearClick" id="clearall" name="clearall">清空所有</a>
                       </div>
                       <div style="float:right;padding-bottom:2px;">
-                          <a class="mini-button mini-button-danger" onclick="onCloseClick">关闭</a>
+                          <a class="mini-button mini-button-success" onclick="onCloseClick">确认关闭</a>
                       </div>
                       <div style="clear:both;"></div>
                   </div>
@@ -73,9 +74,9 @@
             <td colspan="2">小瓶水<input name="C3_531241265561" class="mini-spinner" style="width:55px;text-align:right" minValue="0" maxValue="99">×2元/瓶</td>
         </tr>
         <tr class="mtaf tc">
-            <td colspan="3">
-                <input type="button" id="ok" value="确认申请" class="btn btn-primary" data-bind="click : ok">
-                <input type="button" value="取消申请" class="btn btn-primary" data-bind="click : cancel">
+            <td colspan="4">
+                <input type="button" value="取消申请" class="btn btn-primary rf" data-bind="click : cancel">
+                <input type="button" id="ok" value="确认申请" class="btn btn-primary rf" data-bind="click : ok">
             </td>
         </tr>
     </table>

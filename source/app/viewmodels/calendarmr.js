@@ -1,4 +1,4 @@
-define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr'], function (dialog, ko,fullCalendar,reservemr) {
+define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr','./editreserve'], function (dialog, ko,fullCalendar,reservemr,editreserve) {
             var baseUrl=appConfig.app.baseUrl;
             var getMethod=appConfig.app.getMethod;
             var saveMethod=appConfig.app.saveMethod;
@@ -36,15 +36,30 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr'], fun
                         day: 'day'
                     },
                     height:500,
-                    slotEventOverlap:false,
-                    weekMode:"liquid",
-                    selectable:true,
+                    slotEventOverlap: false,
+                    weekMode: "liquid",
+                    selectable: true,
                     dayClick: function(date) {
                         yyyy=date.getFullYear();
                         mm=date.getMonth()+1;
                         dd=date.getDate();
                         $('#calendar').fullCalendar( 'gotoDate', yyyy,mm-1,dd );
                         $('#calendar').fullCalendar('changeView','agendaDay');
+                    },
+                    eventClick: function(event, jsEvent, view) {
+                        //console.log(event);
+                        editreserve.show(event).then(function(r){
+           
+                            cmswhere="mid='"+mid+"' AND month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"'";
+                            var f3svc_sql='select rec_id as [id], mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where '+cmswhere;
+                            dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null)
+                            //console.log(f3svc_sql);
+                            function fnSuccess(Json){
+                                objCalendar.events=Json;
+                                 $('#calendar').fullCalendar("destroy");
+                                 $('#calendar').fullCalendar(objCalendar);
+                            };
+                        });
                     },
                     events:null
                 };
@@ -59,7 +74,7 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr'], fun
                 mn=mm+1;
                 cmswhere="mid='"+mid+"' AND month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"'";
                 // dbs.dbGetdata(subresid,0,cmswhere,fnSuccess,null,null)
-                var f3svc_sql='select  mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where '+cmswhere;
+                var f3svc_sql='select rec_id as [id], mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where '+cmswhere;
                 dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null)
                 console.log(f3svc_sql);
                 function fnSuccess(Json){
@@ -81,9 +96,9 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr'], fun
         reservemr.show(mid,yyyy,mm,dd).then(function(r){
            
                 cmswhere="mid='"+mid+"' AND month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"'";
-                var f3svc_sql='select  mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where '+cmswhere;
+                var f3svc_sql='select rec_id as [id], mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where '+cmswhere;
                 dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null)
-                console.log(f3svc_sql);
+                //console.log(f3svc_sql);
                 function fnSuccess(Json){
                    
                     objCalendar.events=Json;

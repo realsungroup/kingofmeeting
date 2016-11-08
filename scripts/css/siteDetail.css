@@ -251,7 +251,7 @@ p {
     text-align: right;
 }
 .mtaf input{
-    margin:20px;
+    margin:20px 0 0 20px;
 }
 /******************************************申请会议室**************************************************/
 .fc-event {
@@ -264,8 +264,7 @@ p {
 }
 .reserve{
     width: 600px;
-    height:300px;
-    margin:20px auto;
+    height: 300px;
     border: 2px solid #ddd;
     background: #fefefe;
     padding: 20px;
