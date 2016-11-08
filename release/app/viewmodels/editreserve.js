@@ -8,7 +8,9 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     var mid,id;
     //var sy,sM,sd,sh,sm,ey,eM,ed,eh,em,title;
     
-    var editreserve = function() {
+    var editreserve = function(buttonEnable) {
+    this.className="";
+    this.buttonEnable=buttonEnable;
     this.keyTextValue=ko.observable("");
     var self=this;
     this.filtertext=ko.computed(function () { 
@@ -20,8 +22,6 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
                      key: self.keyTextValue()
                 });
                 }, 500);
-               
-                //  console.log('keyTextValue');
                  return self.keyTextValue();
            }
          });
@@ -39,6 +39,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
          $(".mini-popup").remove();
     }
     editreserve.prototype.attached=function(){
+        var me=this;
         mini.parse();
         cmswhere="rec_id="+id;
         dbs.dbGetdata(subresid,0,cmswhere,fnSuccess,null,null);
@@ -88,7 +89,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
                 closeMinipopup();
             }
             function fnerror(text){
-                dialog.showMessage(text,'修改失败',['返回'],true);
+                dialog.showMessage(text.message,'修改失败',['返回'],true);
             }
             function fnhttperror(jqXHR, textStatus, errorThrown){
                 dialog.showMessage('error','错误',['返回'],true);
@@ -121,7 +122,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
                 dialog.close(that);
             }
             function fnerror(text){
-                dialog.showMessage(text,'删除失败',['返回'],true);
+                dialog.showMessage(text.message,'删除失败',['返回'],true);
             }
             function fnhttperror(jqXHR, textStatus, errorThrown){
                 dialog.showMessage('error','错误',['返回'],true);
@@ -133,20 +134,8 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         dialog.close(this);
     };
     editreserve.show = function(event){
-        // console.log(event);
-		// sy = event.start.getFullYear();
-		// sM = event.start.getMonth()+1;
-        // sd = event.start.getDate();
-        // sh = event.start.getHours();
-        // sm = event.start.getMinutes();
-        // ey = event.end.getFullYear();
-		// eM = event.end.getMonth()+1;
-        // ed = event.end.getDate();
-        // eh = event.end.getHours();
-        // em = event.end.getMinutes();
-        // title = event.title;
         id=event.id;
-        return dialog.show(new editreserve() );
+        return dialog.show(new editreserve(event.className[0]=='classofme') );
         
     };
     return editreserve;

@@ -77,8 +77,8 @@
             <td colspan="4">
                 <input name="REC_ID" class="mini-Hidden" allowInput="false"/>
                 <input type="button" value="取消修改" class="btn btn-primary rf" data-bind="click : cancel">
-                <input type="button" id="ok" value="确认修改" class="btn btn-primary rf" data-bind="click : ok">
-                <input type="button" value="删除预定" class="btn btn-danger rf" data-bind="click : del">
+                <input type="button" id="ok" value="确认修改" class="btn btn-primary rf" data-bind="click : ok,enable:buttonEnable">
+                <input type="button" value="删除预定" class="btn btn-danger rf" data-bind="click : del,enable:buttonEnable">
             </td>
         </tr>
     </table>

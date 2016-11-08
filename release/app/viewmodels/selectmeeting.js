@@ -38,12 +38,18 @@ define(['plugins/http', 'durandal/app', 'knockout','durandal/system','plugins/ro
         }
 	};
     return {
-		activate:function(){},
-        attached:function(){
+		activate:function(e){
+            if(e!=undefined){
+                appConfig.app.user=e.user;
+                appConfig.app.user=e.ucode;
+            }
+
+        },
+        attached:function(e){
         
             calendar=function(mdata){
-                mid=mdata.mid;
-                calendarmr.show(mid);
+                
+                calendarmr.show(mdata);
             };     
             (function($) {
               

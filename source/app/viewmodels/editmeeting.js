@@ -1,4 +1,4 @@
-define(['plugins/http', 'durandal/app', 'knockout','durandal/system','plugins/router','./editmr','./reserve','./scanner','plugins/dialog'], function (http, app, ko,system,router,editmr,reserve,dialog) {
+define(['plugins/http', 'durandal/app', 'knockout','durandal/system','plugins/router','./editmr','plugins/dialog'], function (http, app, ko,system,router,editmr,dialog) {
             baseUrl=appConfig.app.baseUrl;
             getMethod=appConfig.app.getMethod;
             saveMethod=appConfig.app.saveMethod;
@@ -184,19 +184,17 @@ define(['plugins/http', 'durandal/app', 'knockout','durandal/system','plugins/ro
                     jQueryCollapse = Collapse;
           
             })(window.jQuery);
-            setTimeout(function() {
-                $("#example").collapse({
-                    accordion: true,
-                    open: function() {
-                        this.addClass("open");
-                        this.css({ height: "450px" });
-                    },
-                    close1: function() {
-                        this.css({ height: "0px" });
-                        this.removeClass("open");
-                    }
-                });
-            }, 50);
+            $("#example").collapse({
+                accordion: true,
+                open: function() {
+                    this.addClass("open");
+                    this.css({ height: "450px" });
+                },
+                close1: function() {
+                    this.css({ height: "0px" });
+                    this.removeClass("open");
+                }
+            });
         },
         mlist:ko.observableArray([]),
         cityfilterofsh:function(){//筛选城市

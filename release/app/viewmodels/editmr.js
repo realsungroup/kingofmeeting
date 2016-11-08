@@ -28,7 +28,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
                 dialog.close(that);
             }
             function fnerror(text){
-                dialog.showMessage(text,'删除失败',['返回'],true);
+                dialog.showMessage(text.message,'删除失败',['返回'],true);
             }
             function fnhttperror(jqXHR, textStatus, errorThrown){
                 dialog.showMessage('error','错误',['返回'],true);
@@ -44,7 +44,6 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         
         var that=this;
         if(confirm('您确定要修改么？')){
-            $('#ok').attr({"disabled":"disabled"});
             mini.parse();
             var form = new mini.Form("editform");
             var o =  new mini.Form("editform").getData();
@@ -60,7 +59,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
                 dialog.close(that);
             }
             function fnerror(text){
-                dialog.showMessage(text,'修改失败',['返回'],true);
+                dialog.showMessage(text.message,'修改失败',['返回'],true);
             }
             function fnhttperror(jqXHR, textStatus, errorThrown){
                 dialog.showMessage('error','错误',['返回'],true);

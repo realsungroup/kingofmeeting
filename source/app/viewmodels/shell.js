@@ -8,7 +8,9 @@
         },
         activate: function () {
             router.map([
-                { route: '', title:'预定会议室', moduleId:  'viewmodels/selectmeeting', nav: true } 
+                { route: '', title:'预定会议室', moduleId:  'viewmodels/selectmeeting', nav: true },
+                { route: 'addmr', title:'新增会议室', moduleId:  'viewmodels/addmr', nav: true },
+                { route: 'editmeeting', title:'编辑会议室', moduleId:  'viewmodels/editmeeting', nav: true } 
                 
             ]).buildNavigationModel();
            

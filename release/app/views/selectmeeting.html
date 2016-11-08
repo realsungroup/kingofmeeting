@@ -17,12 +17,10 @@
 			<input class="active" type="button" value="1F" data-bind="click : floorfilter1F"/>
 		</div>
 		<div class="meeting" data-bind="foreach: mlist">
-                <button data-bind="click : calendar.bind(mid)" >
-					<span data-bind="text: city"></span>
-					<span data-bind="text: fname"></span><br>
-					<span data-bind="text: floor"></span><br>
-					<span data-bind="text: mname"></span>
-			    </button>
+            <button data-bind="click : calendar.bind(mid)" >
+				<img data-bind="attr: { src: mrimage }" height="70px" width="90px">
+				<p data-bind="text: mname"></p>
+			</button>
 		</div>
 	</div>
 	<h3 data-bind="click : cityfilterofwx">无锡</h3>
@@ -42,12 +40,10 @@
 			<input type="button" value="2F" data-bind="click : floorfilter2F"/><br>
 			<input class="active" type="button" value="1F" data-bind="click : floorfilter1F"/>
 		</div>
-		<div class="meeting" data-bind="foreach: mlist" >
-			<button data-bind="click : calendar.bind(mid)">
-				<span data-bind="text: city"></span>
-				<span data-bind="text: fname"></span><br>
-				<span data-bind="text: floor"></span><br>
-				<span data-bind="text: mname"></span>
+		<div class="meeting" data-bind="foreach: mlist">
+        	<button data-bind="click : calendar.bind(mid)" >
+				<img data-bind="attr: { src: mrimage }" height="70px" width="90px">
+				<p data-bind="text: mname"></p>
 			</button>
 		</div>
 	</div>

@@ -9,15 +9,7 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr','./ed
             var subresid=appConfig.meetingroom.subresid;
             var poresid=appConfig.meetingroom.poresid;
             var cmswhere="";
-            var city;
-            var building;
-            var floor;
-            var newDate;
-            var yyyy;
-            var mm;
-            var dd;
-            var mn;
-            var mid;
+            var city,building,floor,newDate,yyyy,mm,dd,mn,mid,teleq,soundeq,projector,wboard,tel,mpnum;
             var eventJson;
             var objCalendar={
                     header: {
@@ -50,8 +42,8 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr','./ed
                         //console.log(event);
                         editreserve.show(event).then(function(r){
            
-                            cmswhere="mid='"+mid+"' AND month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"'";
-                            var f3svc_sql='select rec_id as [id], mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where '+cmswhere;
+                            cmswhere="mid='"+mid+"' AND (month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"') AND isnull(remove,'')<>'Y'";
+                             var f3svc_sql="select case when REC_CRTID='"+appConfig.app.user+"' then 'classofme' else 'classofothers'  end as [className], rec_id as [id], mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where "+cmswhere;
                             dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null)
                             //console.log(f3svc_sql);
                             function fnSuccess(Json){
@@ -66,24 +58,18 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr','./ed
     var carendarmr = function() {
         jQuery(document).ready(function() { //日历控件
             var date = new Date();
-		        dd = date.getDate();
-		        mm = date.getMonth()+1;
-		        yyyy = date.getFullYear();
-            
-            
-                mn=mm+1;
-                cmswhere="mid='"+mid+"' AND month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"'";
-                // dbs.dbGetdata(subresid,0,cmswhere,fnSuccess,null,null)
-                var f3svc_sql='select rec_id as [id], mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where '+cmswhere;
-                dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null)
-                console.log(f3svc_sql);
-                function fnSuccess(Json){
-                   
-                    objCalendar.events=Json;
-                   
-                };
-                
-            
+		    dd = date.getDate();
+		    mm = date.getMonth()+1;
+		    yyyy = date.getFullYear();
+            mn=mm+1;
+            cmswhere="mid='"+mid+"' AND (month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"') AND isnull(remove,'')<>'Y'";
+            // dbs.dbGetdata(subresid,0,cmswhere,fnSuccess,null,null)
+             var f3svc_sql="select case when REC_CRTID='"+appConfig.app.user+"' then 'classofme' else 'classofothers'  end as [className], rec_id as [id], mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where "+cmswhere;
+            dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null)
+            //console.log(f3svc_sql);
+            function fnSuccess(Json){
+                objCalendar.events=Json;
+            };
             setTimeout(function() {
                 var calendar = jQuery('#calendar').fullCalendar(objCalendar);
             }, 350);
@@ -95,8 +81,8 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr','./ed
     carendarmr.prototype.ok = function() {
         reservemr.show(mid,yyyy,mm,dd).then(function(r){
            
-                cmswhere="mid='"+mid+"' AND month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"'";
-                var f3svc_sql='select rec_id as [id], mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where '+cmswhere;
+                cmswhere="mid='"+mid+"' AND (month='"+yyyy+""+mm+"' OR month='"+yyyy+""+mn+"') AND isnull(remove,'')<>'Y'";
+                 var f3svc_sql="select case when REC_CRTID='"+appConfig.app.user+"' then 'classofme' else 'classofothers'  end as [className], rec_id as [id], mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where "+cmswhere;
                 dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null)
                 //console.log(f3svc_sql);
                 function fnSuccess(Json){
@@ -114,12 +100,19 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr','./ed
         //dialog.close(that);
     };
     carendarmr.prototype.attached=function(){
-       
+        var listeq='容纳人数:<i>'+mpnum+'</i>电话:<i>'+tel+'</i>电话会议设备:<i>'+teleq+'</i>扩音设备:<i>'+soundeq+'</i>投影仪:<i>'+projector+'</i>白板:<i>'+wboard+'</i>'
+        $('.calendarFoot1').append(listeq);
     };
    
 
     carendarmr.show = function(mdata){
-        mid=mdata;
+        mid=mdata.mid;
+        teleq=mdata.teleq;
+        soundeq=mdata.soundeq;
+        projector=mdata.projector;
+        wboard=mdata.wboard;
+        mpnum=mdata.mpnum;
+        tel=mdata.tel;
         return dialog.show(new carendarmr());
     };
     

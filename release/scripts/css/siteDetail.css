@@ -215,12 +215,11 @@ p {
     padding-right:3px;
 }
 #calendar{
-    width:770px;
+    width:750px;
     border: 2px solid #ddd;
     background: #fefefe;
     padding: 10px;
-    height:525px;
-    overflow: auto;
+    min-height:525px;
 }
 .calendarFoot{
     border: 2px solid #ddd;
@@ -228,8 +227,49 @@ p {
     padding: 10px;
     height:60px;
 }
+.calendarFoot1{
+    border: 2px solid #ddd;
+    background: #fefefe;
+    padding: 3px;
+    height:30px;
+}
+.calendarFoot1 b{
+    font-size: 18px;
+    margin:0 10px 0 10px;
+}
+.calendarFoot1 i{
+    margin:0 18px 0 10px;
+    color:#f00;
+}
 .calendarFoot input{
     margin-left:20px; 
+}
+.classofme {
+    border: 1px solid #000;
+    background-color: rgba(0,120,243,0.7);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    font-size: .85em;
+    padding-left:5px;
+}
+.classofme:hover{
+    cursor: pointer;
+}
+.classofothers {
+    border: 1px solid #000;
+    background-color: rgba(55,55,55,0.7);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    font-size: .85em;
+    padding-left:5px;
+}
+.classofothers:hover{
+    cursor: pointer;
+}
+.durandal-wrapper{
+    height: 615px;
+    overflow-y: auto;
+    overflow-x: hidden; 
 }
 /**************************************新增会议室************************/
 .mta{
@@ -254,14 +294,6 @@ p {
     margin:20px 0 0 20px;
 }
 /******************************************申请会议室**************************************************/
-.fc-event {
-    border: 1px solid #333;
-    background-color: rgba(0,0,0,0.7);
-    color: #fff;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    font-size: .85em;
-    padding-left:5px;
-}
 .reserve{
     width: 600px;
     height: 300px;

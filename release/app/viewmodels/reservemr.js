@@ -80,7 +80,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
           
         }
         function fnerror(text){
-            dialog.showMessage(text,'会议室申请失败',['返回'],true);
+            dialog.showMessage(text.message,'会议室申请失败',['返回'],true);
             //alert(text);
         }
         function fnhttperror(jqXHR, textStatus, errorThrown){
