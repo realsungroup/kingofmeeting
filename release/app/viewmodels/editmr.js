@@ -19,6 +19,8 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
             o._id=1;
             o._state="modified";
             o.remove="Y";
+            o.mname="";
+            o.tel="";
             var json = mini.encode([o]);
             dbs.dbSavedata(resid,0,json,dataSaved,fnerror,fnhttperror);
             function dataSaved(text){

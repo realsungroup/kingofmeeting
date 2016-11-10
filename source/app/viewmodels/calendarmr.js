@@ -78,7 +78,7 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr','./ed
             f3svc_sql="select case when REC_CRTID='"+user+"' then 'classofme' else 'classofothers'  end as [className], rec_id as [id], mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where "+cmswhere;
             dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null);//连接数据库
             function fnSuccess(Json){
-                console.log(Json);
+                //console.log(Json);
                 objCalendar.events=Json;//对日历中预定情况赋初始值
             };
             setTimeout(function() {

@@ -33,16 +33,16 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         mini.parse();
         var urllist=appConfig.app.baseUrl + "&method=" + appConfig.app.getMethod + "&user=" + appConfig.app.user + "&ucode=" + appConfig.app.ucode + "&subresid=0&resid=" + poresid + "&cmswhere=";
         var grid = mini.get("datagrid1");
-        grid.set({url:urllist, ajaxOptions:{dataType:"jsonp",jsonp:"jsoncallback"}});
+        grid.set({url:urllist, ajaxOptions:{dataType:"jsonp",jsonp:"jsoncallback"}});//跨域请求
         function loadSuccess(e){
             //console.log(e);
         }
         var start='<input name="start" format="yyyy-MM-dd H:mm" value="'+y+'-'+m+'-'+d+' 9:00" style="width:250px" class="mini-datepicker" showOkButton="true" showTime="true" required="true"/>'
-        $('#start').append(start);
+        $('#start').append(start);//动态设置开始时间
         var endtime='<input name="endtime" format="yyyy-MM-dd H:mm" value="'+y+'-'+m+'-'+d+' 10:00" style="width:250px" class="mini-datepicker" showOkButton="true" showTime="true" required="true"/>'
-        $('#endtime').append(endtime);
+        $('#endtime').append(endtime);//动态设置结束时间
     };
-    reservemr.prototype.ok = function() {
+    reservemr.prototype.ok = function() {//保存按钮
         var that=this;
         mini.parse();
         var form = new mini.Form("form");
