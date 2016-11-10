@@ -8,8 +8,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     var cmswhere;
     var editmr = function() {
     };
-    editmr.prototype.del = function(){
-        
+    editmr.prototype.del = function(){//删除按钮
         var that=this;
         if(confirm('您确定要删除么？')){
             mini.parse();
@@ -40,8 +39,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     editmr.prototype.cancel = function() {
         dialog.close(this) 
     };
-    editmr.prototype.ok = function() {
-        
+    editmr.prototype.ok = function() {//修改按钮
         var that=this;
         if(confirm('您确定要修改么？')){
             mini.parse();
@@ -55,7 +53,6 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
             dbs.dbSavedata(resid,0,json,dataSaved,fnerror,fnhttperror);
             function dataSaved(text){
                 dialog.showMessage('<h1>修改成功</h1>','会议室编辑',['返回'],true);
-                $('#refreshmr').click()
                 dialog.close(that);
             }
             function fnerror(text){
@@ -69,11 +66,9 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         }
     };
     editmr.prototype.attached=function(){
-        
         mini.parse();
-        
         cmswhere="mid="+mid;
-        dbs.dbGetdata(resid,0,cmswhere,fnSuccess,null,null);
+        dbs.dbGetdata(resid,0,cmswhere,fnSuccess,null,null);//获取并设置页面数据
         function fnSuccess(data){
             mini.parse();
             var form = new mini.Form("editform");
@@ -93,9 +88,5 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         mid=mdata;
         return dialog.show(new editmr());
     };
-    
-  
-           
-       
     return editmr;
 })

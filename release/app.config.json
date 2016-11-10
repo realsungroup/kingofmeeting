@@ -3,7 +3,7 @@
         "loginUrl": "",
         "baseUrl": "http://www.realsun.me:8003/rispweb/risphost/data/AjaxService.aspx?uiver=200&dynlogin=1",
         "localbaseUrl": "",
-        "user":"10000",
+        "user":"demo1",
         "ucode":"bTqoF2CcMCj7uIOBllZtDw==",
         "getMethod": "ShowHostTableDatas_Ajax",
         "uploadFileUrl":"http://www.realsun.me:8003/rispweb/rispservice/SvcUploadFile2.aspx",

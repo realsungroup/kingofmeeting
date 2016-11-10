@@ -16038,7 +16038,7 @@ table.fc-border-separate {
   padding: 0 2px; }
 
 .fc-grid .fc-day-number {
-  font-size: 2em;
+  font-size: 1em;
   color:#50a0f0}
 
 .fc-grid .fc-other-month .fc-day-number {
