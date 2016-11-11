@@ -55,6 +55,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
             dbs.dbSavedata(resid,0,json,dataSaved,fnerror,fnhttperror);
             function dataSaved(text){
                 dialog.showMessage('<h1>修改成功</h1>','会议室编辑',['返回'],true);
+                $('#refreshmr').click()
                 dialog.close(that);
             }
             function fnerror(text){

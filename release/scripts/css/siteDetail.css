@@ -246,7 +246,7 @@ p {
     margin-left:20px; 
 }
 .classofme {
-    border: 1px solid #000;
+    border: 1px solid #007ACC;
     background-color: #11C6F6;
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -257,8 +257,8 @@ p {
     cursor: pointer;
 }
 .classofothers {
-    border: 1px solid #000;
-    background-color: #444;
+    border: 1px solid #ddd;
+    background-color: #aaa;
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     font-size: .85em;
