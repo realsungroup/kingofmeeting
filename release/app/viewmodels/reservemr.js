@@ -2,6 +2,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     var baseUrl=appConfig.app.baseUrl;
     var ucode = appConfig.app.ucode;
     var user  = appConfig.app.user;
+    var getMethod = appConfig.app.getMethod
     var dbs=new dbHelper(baseUrl,user,ucode);
     var subresid=appConfig.meetingroom.subresid;
     var poresid=appConfig.meetingroom.poresid;
@@ -31,9 +32,10 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     }
     reservemr.prototype.attached=function(){
         mini.parse();
-        var urllist=appConfig.app.baseUrl + "&method=" + appConfig.app.getMethod + "&user=" + appConfig.app.user + "&ucode=" + appConfig.app.ucode + "&subresid=0&resid=" + poresid + "&cmswhere=";
+        var urllist=baseUrl + "&method=" + getMethod + "&user=" + user + "&ucode=" + ucode + "&subresid=0&resid=" + poresid + "&cmswhere=";
         var grid = mini.get("datagrid1");
         grid.set({url:urllist, ajaxOptions:{dataType:"jsonp",jsonp:"jsoncallback"}});//跨域请求
+        console.log(urllist);
         function loadSuccess(e){
             //console.log(e);
         }

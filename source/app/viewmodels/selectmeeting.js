@@ -2,22 +2,11 @@ define(['plugins/http', 'durandal/app', 'knockout','durandal/system','plugins/ro
             baseUrl=appConfig.app.baseUrl;
             getMethod=appConfig.app.getMethod;
             saveMethod=appConfig.app.saveMethod;
-            var me=this;
             var ucode = appConfig.app.ucode;
             var user  = appConfig.app.user;
             var dbs=new dbHelper(baseUrl,user,ucode);
             var resid=appConfig.meetingroom.resid;
-            var subresid=appConfig.meetingroom.subresid;
-            var poresid=appConfig.meetingroom.poresid;
-            var cmswhere="";
-            var city;
-            var building;
-            var floor;
-            var newDate;
-            var yyyy;
-            var mm;
-            var dd;
-            var mid;
+            var cmswhere="",city,building,floor,yyyy,mm,dd,mid;
     gomeeting=function(self,city,building,floor){//页面输出
         if(building===undefined&&floor===undefined){
             cmswhere="city='"+city+"'";
