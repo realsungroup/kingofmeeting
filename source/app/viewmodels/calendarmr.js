@@ -6,7 +6,7 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr','./ed
     var user  = appConfig.app.user;
     var dbs = new dbHelper(baseUrl,user,ucode);
     var subresid = appConfig.meetingroom.subresid;
-    var city,building,floor,yyyy,mm,dd,yyyyn,mn,yyyyp,mp,y,m,d,mid,teleq,soundeq,projector,wboard,tel,mpnum,eventJson,cmswhere,f3svc_sql,date = new Date();
+    var yyyy,mm,dd,yyyyn,mn,yyyyp,mp,y,m,d,mid,teleq,soundeq,projector,wboard,tel,mpnum,eventJson,cmswhere,f3svc_sql,date = new Date();
     var thenfn = function(){//then函数
         dbs.dbGetLittleDataBysql(subresid, f3svc_sql, fnSuccess);
         function fnSuccess(Json){
@@ -17,32 +17,30 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr','./ed
     }
     var objCalendar={//日历初始化状态对象
         header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
+            left: 'prev,next today',//日历头部左侧控件
+            center: 'title',//日历头部中间控件
+            right: 'month,agendaWeek,agendaDay'//日历头部右侧控件
         },
-        buttonText: {
+        buttonText: {//按钮文字样式
             prev: 'prev',
             next: 'next',
-            prevYear: '&nbsp;&lt;&lt;&nbsp;',
-            nextYear: '&nbsp;&gt;&gt;&nbsp;',
             today: 'today',
             month: 'month',
             week: 'week',
             day: 'day'
         },
-        height:500,
-        slotEventOverlap: false,
-        weekMode: "liquid",
-        selectable: true,
-        dayClick: function(date) {
+        height:500,//日历高度
+        slotEventOverlap: false,//设置视图中的事件显示是否可以重叠覆盖
+        weekMode: "liquid",//在月视图里显示周的模式，因为每月周数可能不同，所以月视图高度不一定。fixed：固定显示6周高，日历高度保持不变;iquid：不固定周数，高度随周数变化;variable：不固定周数，但高度固定
+        //selectable: true,//是否允许用户通过单击或拖动选择日历中的对象，包括天和时间。
+        dayClick: function(date) {//当单击日历中的某一天时,触发此操作
             y=date.getFullYear();
             m=date.getMonth();
             d=date.getDate();
-            $('#calendar').fullCalendar( 'gotoDate', y,m,d );
-            $('#calendar').fullCalendar('changeView','agendaDay');
+            $('#calendar').fullCalendar( 'gotoDate', y,m,d );//指定进入日历中的某一天
+            $('#calendar').fullCalendar('changeView','agendaDay');//切换“日”视图
         },
-        eventClick: function(event, jsEvent, view) {
+        eventClick: function(event, jsEvent, view) {//当点击日历中的某一日程（事件）时，触发此操作
             editreserve.show(event).then(function(){
                 thenfn();
             });
@@ -76,7 +74,7 @@ define(['plugins/dialog', 'knockout','calendar/fullCalendar','./reservemr','./ed
             cmswhere = "mid='"+mid+"' AND (month='"+yyyy+""+mm+"' OR month='"+yyyyp+""+mp+"' OR month='"+yyyyn+""+mn+"') AND isnull(remove,'')<>'Y'";
             //sql语言
             f3svc_sql="select case when REC_CRTID='"+user+"' then 'classofme' else 'classofothers'  end as [className], rec_id as [id], mid,title ,start, endtime as [end], month, allDay,total   from CT531240746615 where "+cmswhere;
-            dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null);//连接数据库
+            dbs.dbGetLittleDataBysql (subresid, f3svc_sql, fnSuccess, null, null);//连接数据库,并获取数据
             function fnSuccess(Json){
                 //console.log(Json);
                 objCalendar.events=Json;//对日历中预定情况赋初始值

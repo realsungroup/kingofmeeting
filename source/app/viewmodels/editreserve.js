@@ -1,4 +1,4 @@
-define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fullcalendar'], function (app,ko,router,dialog,fullcalendar) {
+define(['durandal/app','knockout','plugins/router','plugins/dialog'], function (app,ko,router,dialog) {
     var baseUrl=appConfig.app.baseUrl;
     var ucode = appConfig.app.ucode;
     var user  = appConfig.app.user;
@@ -26,7 +26,7 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
     editreserve.prototype.compositionComplete=function (view){
             mini.parse();
     }
-    function closeMinipopup(){//将参会人员未从DOM中移除的div
+    function closeMinipopup(){//将参会人员未关闭的div从DOM树中移除
          $(".mini-shadow").remove();
          $(".mini-popup").remove();
     }
@@ -38,11 +38,11 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         function fnSuccess(data){
             var form = new mini.Form("editform");
             form.setData(data[0]);
-            var poupText = '<input id="lookup" text="'+data[0].C3_531241226642+'" name="C3_531241226642" class="mini-lookup" style="width:450px" popup="#gridPanel" grid="#datagrid1" multiSelect="true" textField="C3_384367557332" valueField="C3_384367557332"/>'
-            $('#poup').append(poupText);//动态添加参会人员列表
+            var poupList = '<input id="lookup" text="'+data[0].C3_531241226642+'" name="C3_531241226642" class="mini-lookup" style="width:450px" popup="#gridPanel" grid="#datagrid1" multiSelect="true" textField="C3_384367557332" valueField="C3_384367557332"/>'
+            $('#poup').append(poupList);//动态添加参会人员列表
             mini.parse();
         }
-        var urllist=appConfig.app.baseUrl + "&method=" + appConfig.app.getMethod + "&user=" + appConfig.app.user + "&ucode=" + appConfig.app.ucode + "&subresid=0&resid=" + poresid + "&cmswhere=";
+        var urllist=baseUrl + "&method=" + appConfig.app.getMethod + "&user=" + user + "&ucode=" + ucode + "&subresid=0&resid=" + poresid + "&cmswhere=";
         var grid = mini.get("datagrid1");
         grid.set({url:urllist, ajaxOptions:{dataType:"jsonp",jsonp:"jsoncallback"}});//跨域请求
         function loadSuccess(e){
@@ -96,19 +96,20 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
             dbs.dbSavedata(subresid,0,json,dataSaved,fnerror,fnhttperror);
             function dataSaved(text){
                 dialog.showMessage('<h1>删除成功</h1>','会议预定编辑',['返回'],true);
-                dialog.close(that);
                 closeMinipopup();
+                dialog.close(that);
             }
             function fnerror(text){
                 dialog.showMessage(text.message,'删除失败',['返回'],true);
+                closeMinipopup();
             }
             function fnhttperror(jqXHR, textStatus, errorThrown){
                 dialog.showMessage('error','错误',['返回'],true);
+                closeMinipopup();
             }
         }else{
             return;
         }
-        closeMinipopup();
         dialog.close(this);
     };
     editreserve.show = function(event){

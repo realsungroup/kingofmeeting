@@ -1,4 +1,4 @@
-define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fullcalendar'], function (app,ko,router,dialog,fullcalendar) {
+define(['durandal/app','knockout','plugins/router','plugins/dialog'], function (app,ko,router,dialog) {
     var mid;
     var baseUrl=appConfig.app.baseUrl;
     var ucode = appConfig.app.ucode;

@@ -1,4 +1,4 @@
-define(['plugins/http', 'durandal/app', 'knockout','durandal/system','plugins/router','./calendarmr','./reservemr','plugins/dialog','calendar/fullcalendar'], function (http, app, ko,system,router,calendarmr,reservemr,dialog,fullcalendar) {
+define(['plugins/http', 'durandal/app', 'knockout','durandal/system','plugins/router','./calendarmr','plugins/dialog','calendar/fullcalendar'], function (http, app, ko,system,router,calendarmr,dialog,fullcalendar) {
             baseUrl=appConfig.app.baseUrl;
             getMethod=appConfig.app.getMethod;
             saveMethod=appConfig.app.saveMethod;

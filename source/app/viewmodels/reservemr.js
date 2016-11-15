@@ -35,7 +35,6 @@ define(['durandal/app','knockout','plugins/router','plugins/dialog','calendar/fu
         var urllist=baseUrl + "&method=" + getMethod + "&user=" + user + "&ucode=" + ucode + "&subresid=0&resid=" + poresid + "&cmswhere=";
         var grid = mini.get("datagrid1");
         grid.set({url:urllist, ajaxOptions:{dataType:"jsonp",jsonp:"jsoncallback"}});//跨域请求
-        console.log(urllist);
         function loadSuccess(e){
             //console.log(e);
         }
